@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container">
+    <h1 class="display-4 text-center" th:text="${title}">Default Title</h1>
+</div>
+
+<p th:unless="${clients} and ${clients.size()}">You have no clients.</p>
+
+<ul class="list-group list-group-flush" th:each="client : ${clients}">
+
+    <li class="list-group-item" th:text="${client.firstName + ', ' + client.lastName}"></li>
+
+</ul>
+<br />
+<div>
+    <a href="/clients/add" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add Client</a>
+</div>
+
+</body>
+</html>

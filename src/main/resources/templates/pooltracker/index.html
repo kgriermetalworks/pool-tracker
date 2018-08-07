@@ -8,7 +8,7 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4 text-center">Welcome to PoolTracker</h1>
+        <h1 class="display-4 text-center" th:text="${title}">Default Title</h1>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
             <h2>Clients</h2>
             <p>Manage your clients. Add, edit, or remove. Organize your client list.</p>
             <p>
-                <a class="btn btn-secondary" href="#">Dive In</a>
+                <a class="btn btn-secondary" href="/clients">Dive In</a>
             </p>
         </div>
         <div class="col-lg-4 text-center">

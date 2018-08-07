@@ -1,4 +1,4 @@
-package com.pooltracker.pooltracker;
+package com.pooltracker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
