@@ -9,28 +9,36 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
+@Table(name = "address")
 public class Address {
 
     @Id
     @GeneratedValue
+    @Column(name = "address_id")
     private int id;
 
     @NotNull
     @Size(min=1, message = "Can not be empty")
+    @Column(name = "street")
     private String street;
 
     @NotNull
     @Size(min=1, message = "Can not be empty")
+    @Column(name = "city")
     private String city;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "state")
     private State state;
 
     @NotNull
     @Size(min=5, max=5, message = "Invalid")
+    @Column(name = "zip_code")
     private String zipCode;
 
-    @OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy = "address")
+//  @OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy = "address")
+    @OneToOne(mappedBy = "address" , fetch = FetchType.EAGER) // jf added this
+    //@JoinColumn(name = "client_id")  // jf added this
     public Client client;
 
     public Address() { }
