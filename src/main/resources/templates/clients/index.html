@@ -13,11 +13,34 @@
 
 <p th:unless="${clients} and ${clients.size()}">You have no clients.</p>
 
-<ul class="list-group list-group-flush" th:each="client : ${clients}">
+<!--<ul class="list-group list-group-flush" th:each="client : ${clients}">
 
     <li class="list-group-item" th:text="${client.firstName + ', ' + client.lastName}"></li>
 
-</ul>
+</ul>-->
+
+<div>
+    <table class="table table-striped">
+        <tbody>
+        <tr th:each="client : ${clients}">
+            <td th:text="${client.firstName + ', ' + client.lastName}"></td>
+
+            <td>
+                <a href="/clients/personal-info" class="btn btn-outline-secondary" role="button" aria-pressed="true">Personal Information</a>
+            </td>
+
+            <td>
+                <a href="/clients/pool" class="btn btn-outline-secondary" role="button" aria-pressed="true">Pool Information</a>
+            </td>
+
+            <td>
+                <a href="/clients/dosage" class="btn btn-outline-secondary" role="button" aria-pressed="true">Dosage Information</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <br />
 <div>
     <a href="/clients/add" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add Client</a>
@@ -25,3 +48,4 @@
 
 </body>
 </html>
+

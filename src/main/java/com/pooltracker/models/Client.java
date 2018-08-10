@@ -6,22 +6,29 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "client")
 public class Client {
 
     @Id
     @GeneratedValue
+    @Column(name = "client_id")
     private int id;
 
     @NotNull
     @Size(min=1, message = "Client must have a first name")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull
     @Size(min=1, message = "Client must have a last name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name= "address_id", nullable = false)
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name= "address_id", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @NotNull

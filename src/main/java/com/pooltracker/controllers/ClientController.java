@@ -60,7 +60,11 @@ public class ClientController {
             return "clients/add";
         }
 
+        System.out.print(newAddress);
+        System.out.print(newClient);
+
         addressDao.save(newAddress);
+        newClient.setAddress(newAddress);
         clientDao.save(newClient);
         return "redirect:";
     }
