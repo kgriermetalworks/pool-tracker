@@ -27,6 +27,7 @@ public class Address {
     @Column(name = "city")
     private String city;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
     private State state;
@@ -36,9 +37,8 @@ public class Address {
     @Column(name = "zip_code")
     private String zipCode;
 
-//  @OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy = "address")
-    @OneToOne(mappedBy = "address" , fetch = FetchType.EAGER) // jf added this
-    //@JoinColumn(name = "client_id")  // jf added this
+    @OneToOne(mappedBy = "address" , fetch = FetchType.EAGER)
+    //@JoinColumn(name = "client_id")
     public Client client;
 
     public Address() { }

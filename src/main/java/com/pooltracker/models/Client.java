@@ -1,9 +1,12 @@
 package com.pooltracker.models;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
 
 @Entity
 @Table(name = "client")
@@ -24,16 +27,20 @@ public class Client {
     @Column(name = "last_name")
     private String lastName;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name= "address_id", nullable = false)
+    @Valid
     @OneToOne(cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "address_id")
     private Address address;
 
     @NotNull
-    @Size(min=10, max=10, message = "10 digits only")
+    @Size(min=10, max=10, message = "Must be 10 digits only")
     private String phone;
+
+    @NotNull
+    @Email(message = "Please enter a valid email")
+    private String email;
+
 
     public Client(String firstName, String lastName, String phone) {
         this.firstName = firstName;
@@ -60,6 +67,10 @@ public class Client {
     public String getPhone() { return phone; }
 
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 
     //public Pool getPool() { return pool; }
 
