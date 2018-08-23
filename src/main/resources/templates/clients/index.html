@@ -26,11 +26,11 @@
             </td>
 
             <td>
-                <a href="/clients/pool" class="btn btn-outline-secondary" role="button" aria-pressed="true">Pool Information</a>
+                <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Pool Information</a>
             </td>
 
             <td>
-                <a href="/clients/dosage" class="btn btn-outline-secondary" role="button" aria-pressed="true">Dosage Information</a>
+                <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Dosage Information</a>
             </td>
         </tr>
         </tbody>

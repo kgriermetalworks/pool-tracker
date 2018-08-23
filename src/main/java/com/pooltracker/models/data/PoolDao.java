@@ -1,8 +1,7 @@
 package com.pooltracker.models.data;
 
 
-import com.pooltracker.models.Client;
-
+import com.pooltracker.models.Pool;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +13,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface ClientDao extends CrudRepository<Client, Integer> {
+public interface PoolDao extends CrudRepository<Pool, Integer> {
 
 }

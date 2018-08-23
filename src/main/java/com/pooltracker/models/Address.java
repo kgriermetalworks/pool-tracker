@@ -38,7 +38,6 @@ public class Address {
     private String zipCode;
 
     @OneToOne(mappedBy = "address" , fetch = FetchType.EAGER)
-    //@JoinColumn(name = "client_id")
     public Client client;
 
     public Address() { }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container">
+    <h1 class="display-4" th:text="${title}">Default Title</h1>
+</div>
+
+<br/>
+<div class="col">
+    <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
+    <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Client Information</a>
+    <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Dosage Information</a>
+</div>
+<br/>
+
+<div class="container" style="max-width:80%;" th:object="${client}">
+
+    <div class="form-group">
+        <div class="row">
+            <h2 th:text="${client.firstName + ' ' + client.lastName}"></h2>
+        </div>
+
+        <br/>
+
+        <div class="row" th:object="${pool}">
+
+            <div class="col">
+                <h3>Gallons</h3> <br/>
+                <a th:text="${pool.gallons}"></a>
+            </div>
+
+            <div class="col">
+                <h3>Filter</h3> <br/>
+                <a th:text="${'Type: ' + pool.filterType.name}"></a> <br/>
+                <a th:text="${'Manufacturer: ' + pool.filterMfr}"></a> <br/>
+                <a th:text="${'Model: ' + pool.filterModel}"></a>
+            </div>
+
+            <div class="col">
+                <h3>Pump</h3> <br/>
+                <a th:text="${'Manufacturer: ' + pool.pumpMfr}"></a> <br/>
+                <a th:text="${'Model: ' + pool.pumpModel}"></a> <br/>
+                <a th:text="${'Horsepower: ' + pool.pumpHp.name}"></a><br/>
+                <a th:text="${'Phase: ' + pool.pumpPh.name}"></a>
+            </div>
+
+        </div>
+
+        <br/>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -7,6 +7,9 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+/**
+ * Created by Kevin Grier
+ */
 
 @Entity
 @Table(name = "client")
@@ -33,6 +36,12 @@ public class Client {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Valid
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "pool_id")
+    private Pool pool;
+
     @NotNull
     @Size(min=10, max=10, message = "Must be 10 digits only")
     private String phone;
@@ -42,9 +51,10 @@ public class Client {
     private String email;
 
 
-    public Client(String firstName, String lastName, String phone) {
+    public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.phone = phone;
     }
 
@@ -72,7 +82,7 @@ public class Client {
 
     public void setEmail(String email) { this.email = email; }
 
-    //public Pool getPool() { return pool; }
+    public Pool getPool() { return pool; }
 
-    //public void setPool(Pool pool) { this.pool = pool; }
+    public void setPool(Pool pool) { this.pool = pool; }
 }

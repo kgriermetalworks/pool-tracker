@@ -1,11 +1,10 @@
 package com.pooltracker.controllers;
 
 
-import com.pooltracker.models.Address;
-import com.pooltracker.models.Client;
-import com.pooltracker.models.State;
+import com.pooltracker.models.*;
 import com.pooltracker.models.data.AddressDao;
 import com.pooltracker.models.data.ClientDao;
+import com.pooltracker.models.data.PoolDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +27,9 @@ public class ClientController {
     @Autowired
     private AddressDao addressDao;
 
+    @Autowired
+    private PoolDao poolDao;
+
     // Request path: /clients
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -44,8 +46,10 @@ public class ClientController {
 
         model.addAttribute("title", "Add Client");
         model.addAttribute(new Client());
-        //model.addAttribute(new Address());
         model.addAttribute("states", State.values());
+        model.addAttribute("filterTypes", FilterType.values());
+        model.addAttribute("pumpHps", PumpHp.values());
+        model.addAttribute("pumpPhs", PumpPh.values());
         return "clients/add";
     }
 
@@ -58,13 +62,14 @@ public class ClientController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Client");
             model.addAttribute("client", newClient);
-            //model.addAttribute("address", newAddress);
             model.addAttribute("states", State.values());
+            model.addAttribute("filterTypes", FilterType.values());
+            model.addAttribute("pumpHps", PumpHp.values());
+            model.addAttribute("pumpPhs", PumpPh.values());
             return "clients/add";
         }
 
 
-        //newClient.setAddress(newAddress);
         clientDao.save(newClient);
         return "redirect:";
     }
@@ -97,23 +102,33 @@ public class ClientController {
         Address a = addressDao.findOne(clientId);
         model.addAttribute("client", c);
         model.addAttribute("states", state.values());
+        model.addAttribute("filterTypes", FilterType.values());
+        model.addAttribute("pumpHps", PumpHp.values());
+        model.addAttribute("pumpPhs", PumpPh.values());
 
         return "clients/edit";
 
     }
     // Does NOT function at this time. need to work out update to the database.
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(int clientId, State state, @ModelAttribute @Valid Client editClient,
-                                  Errors errors, Model model) {
+    @RequestMapping(value = "edit/{clientId}", method = RequestMethod.POST)
+    public String processEditForm( @PathVariable int clientId, State state,
+                                   @ModelAttribute @Valid Client editClient,
+                                   Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Client");
             model.addAttribute("client", editClient);
             model.addAttribute("state", state.values());
+            model.addAttribute("filterTypes", FilterType.values());
+            model.addAttribute("pumpHps", PumpHp.values());
+            model.addAttribute("pumpPhs", PumpPh.values());
             return "clients/edit";
         }
 
-        clientDao.save(editClient);
+        Client updateClient = clientDao.findOne(clientId);
+        updateClient.setFirstName(editClient.getFirstName());
+        updateClient.setLastName(editClient.getLastName());
+        clientDao.save(updateClient);
 
         return "redirect:";
 
@@ -131,6 +146,40 @@ public class ClientController {
 
 
         return "clients/client-info";
+
+    }
+
+    //Displays the pool info of a added client by its id.
+    @RequestMapping(value = "pool-info/{id}", method = RequestMethod.GET)
+    public String displayPoolInfo(Model model, @PathVariable int id) {
+
+        model.addAttribute("title", "Pool Information");
+        Client c = clientDao.findOne(id);
+        model.addAttribute("client", c);
+        Pool p = poolDao.findOne(id);
+        model.addAttribute("pool", p);
+
+
+        return "clients/pool-info";
+
+    }
+
+    //Displays the dosage view of a added client by its id.
+    @RequestMapping(value = "dosage-view/{id}", method = RequestMethod.GET)
+    public String displayDosageInfo(Model model, @PathVariable int id) {
+
+        Client c = clientDao.findOne(id);
+        Pool p = poolDao.findOne(id);
+        float gallons = p.getGallons();
+        Dosage d = new Dosage(gallons);
+
+        //System.out.println(d.toString());
+
+        model.addAttribute("title", "Dosage Information");
+        model.addAttribute("client", c);
+        model.addAttribute("dosage", d);
+
+        return "dosage/dosage-view";
 
     }
 
