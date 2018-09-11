@@ -8,29 +8,34 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container">
-    <h1 class="display-4 text-center" th:text="${title}">Default Title</h1>
+    <h1 class="display-4 text-center" id="title" th:text="${title}">Default Title</h1>
+</div>
+
+<br/>
+<div>
+    <h2 th:text="${user + ' Client List'}"></h2>
 </div>
 
 <br/>
 
 <p th:unless="${clients} and ${clients.size()}">You have no clients.</p>
 
-<div>
+<div >
     <table class="table table-striped">
         <tbody>
         <tr th:each="client : ${clients}">
             <td class="h2" th:text="${client.firstName + ' ' + client.lastName}"></td>
 
             <td>
-                <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Personal Information</a>
+                <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-outline-dark" style="border-radius: 3px;" role="button" aria-pressed="true">Personal Information</a>
             </td>
 
             <td>
-                <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Pool Information</a>
+                <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Pool Information</a>
             </td>
 
             <td>
-                <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Dosage Information</a>
+                <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Dosage Information</a>
             </td>
         </tr>
         </tbody>
@@ -39,13 +44,13 @@
 
 <br />
 
-    <div class="row" style="max-width:300px;">
+    <div class="row" style="max-width:350px;">
         <div class="col">
-            <a href="/clients/add" class="btn btn-secondary active" role="button" aria-pressed="true">Add Client</a>
+            <a href="/clients/add" class="btn btn-dark active" role="button" aria-pressed="true"><i class="fas fa-user-plus"></i> Add Client</a>
         </div>
 
         <div class="col" th:if="${clients} and ${clients.size()}">
-            <a href="/clients/remove" class="btn btn-secondary active" role="button" aria-pressed="true">Remove Client</a>
+            <a href="/clients/remove" class="btn btn-dark active" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i> Remove Client</a>
         </div>
     </div>
 

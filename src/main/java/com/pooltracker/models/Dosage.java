@@ -1,8 +1,12 @@
 package com.pooltracker.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Dosage {
 
+    @NotEmpty
     public double gallons;
+
     public double sodHypo;
     public double calHypo;
     public double trichlor;
@@ -14,22 +18,23 @@ public class Dosage {
     public double cyaAcid;
     public double sodThio;
 
-    public Dosage(double g) {
-        g = g/10000;
-        gallons = g;
-        sodHypo = 10.7 * gallons;
-        calHypo = 2.0 * gallons;
-        trichlor = 1.5 * gallons;
-        sodaAsh = 6 * gallons;
-        muriaticAcid = 12 * gallons;
-        sodBicarb = 1.4 * gallons;
-        sodBisulf = 2.1 * gallons;
-        calChlor = 1.2 * gallons;
-        cyaAcid = 13 * gallons;
-        sodThio = 2.6 * gallons;
 
+    public Dosage(double g) {
+        gallons = g;
+        sodHypo = 10.7 * (gallons/10000);
+        calHypo = 2.0 * (gallons/10000);
+        trichlor = 1.5 * (gallons/10000);
+        sodaAsh = 6 * (gallons/10000);
+        muriaticAcid = 12 * (gallons/10000);
+        sodBicarb = 1.4 * (gallons/10000);
+        sodBisulf = 2.1 * (gallons/10000);
+        calChlor = 1.2 * (gallons/10000);
+        cyaAcid = 13 * (gallons/10000);
+        sodThio = 2.6 * (gallons/10000);
 
     }
+
+    public Dosage() {}
 
     public double getGallons() { return gallons; }
 

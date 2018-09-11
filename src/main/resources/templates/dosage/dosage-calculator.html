@@ -2,32 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container" id="general">
+<body class="container">
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container">
-    <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
+    <h1 class="display-4 text-center" id="title" th:text="${title}">Default Title</h1>
 </div>
 
 <br/>
-    <div class="col" th:unless="${clients}" th:object="${client}">
-        <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
-        <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Client Information</a>
-        <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Pool Information</a>
+
+<div class="container" style="max-width:80%;" >
+    <div class="ml-5">
+        <a href="/pooltracker" class="btn btn-dark active" role="button" aria-pressed="true"><i class="fas fa-home"></i> Home</a>
     </div>
+</div>
+
+<br/>
+<div class="container" style="max-width:80%;" th:object="${dosage}">
+
+    <div class="ml-5">
+        <form method="post" style="max-width:600px;" th:object="${dosage}">
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label style="font-weight:bold;" th:for="gallons" >Gallons</label>
+                        <input type="text" class="form-control" th:field="*{gallons}" id="inputGallons"/>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-dark active" value="Calculate" />
+            </div>
+        </form>
+    </div>
+
 <br/>
 
-
-<div class="container" style="max-width:80%;">
-<div class="form-group">
-    <div class="row">
-        <h2 style="font-weight:bold;" th:text="${client.firstName + ' ' + client.lastName}"></h2>
-    </div>
-
-    <br/>
-
-    <div class="container" th:object="${dosage}">
+    <div class="container" >
         <div class="row">
             <h3 class="ml-5" style="font-weight:bold;" th:text="${dosage.gallons} + ' Gallons'"></h3>
         </div>
@@ -133,9 +146,7 @@
         </table>
 
     </div>
-    </div>
 </div>
-
 
 </body>
 </html>

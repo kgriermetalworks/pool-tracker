@@ -8,7 +8,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container">
-    <h1 class="display-4" th:text="${title}">Default Title</h1>
+    <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
 </div>
 
 <br/>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <div class="row">
-            <h2 th:text="${client.firstName + ' ' + client.lastName}"></h2>
+            <h2 style="font-weight:bold;" th:text="${client.firstName + ' ' + client.lastName}"></h2>
         </div>
 
         <br/>

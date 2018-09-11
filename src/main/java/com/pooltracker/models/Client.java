@@ -50,6 +50,8 @@ public class Client {
     @Email(message = "Please enter a valid email")
     private String email;
 
+    @ManyToOne
+    private User user;
 
     public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
@@ -85,4 +87,8 @@ public class Client {
     public Pool getPool() { return pool; }
 
     public void setPool(Pool pool) { this.pool = pool; }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }

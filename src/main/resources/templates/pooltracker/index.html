@@ -6,9 +6,9 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid jumbotron-bg">
     <div class="container">
-        <h1 class="display-4 text-center" th:text="${title}">Default Title</h1>
+        <h1 class="display-4 text-center" id="pool-title" th:text="${title}">Default Title</h1>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
             <h2>Clients</h2>
             <p>Manage your clients. Add, edit, or remove. Organize your client list.</p>
             <p>
-                <a class="btn btn-secondary" href="/clients">Dive In</a>
+                <a class="btn btn-dark" href="/clients">Dive In</a>
             </p>
         </div>
         <div class="col-lg-4 text-center">
@@ -27,7 +27,7 @@
             <h2>Map</h2>
             <p>View your client footprint. Know where to focus and where to grow.</p>
             <p>
-                <a class="btn btn-secondary" href="#">Dive In</a>
+                <a class="btn btn-dark" href="#">Dive In</a>
             </p>
         </div>
         <div class="col-lg-4 text-center">
@@ -35,7 +35,7 @@
             <h2>Dosage</h2>
             <p>Dosage calculator. Know how much to add when adjustments are needed.</p>
             <p>
-                <a class="btn btn-secondary" href="#">Dive In</a>
+                <a class="btn btn-dark" href="/pooltracker/dosage-calculator">Dive In</a>
             </p>
         </div>
     </div>
