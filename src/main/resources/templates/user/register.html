@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="bg-pool">
+
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <br />
+
+    <div class="container">
+
+        <div class="card text-white bg-dark mb-3 text-center mx-auto" style="width: 25rem;">
+            <div class="text-center p-3">
+                <h1 class="card-text">PoolTracker</h1>
+                <i class="fas fa-swimming-pool fa-3x"></i>
+                <h3 class="card-text">Account Registration</h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <form class="form-group" method="post" th:object="${user}">
+
+                    <div class="row">
+                        <div class="form-group col-md">
+                            <label th:for="business"></label>
+                            <input type="text" class="form-control" th:field="*{business}"  placeholder="Business"/>
+                            <span th:errors="*{business}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md">
+                            <label th:for="email"></label>
+                            <input type="email" class="form-control" th:field="*{email}" placeholder="Email"/>
+                            <span th:errors="*{email}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md">
+                            <label th:for="password"></label>
+                            <input type="password" class="form-control" th:field="*{password}" placeholder="Password" />
+                            <span th:errors="*{password}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md">
+                            <label for="verify"></label>
+                            <input type="password" class="form-control" name="verify" id="verify" placeholder="Verify Password" />
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-sm-6 col-sm-offset-3 mx-auto p-3">
+                            <input type="submit" class="btn active" value="Register" />
+                        </div>
+                    </div>
+
+                </form>
+                <div>
+                    <a href="/login" class="text-white text-center p-3">Already Have An Account</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

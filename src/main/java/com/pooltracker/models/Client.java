@@ -1,9 +1,15 @@
 package com.pooltracker.models;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+/**
+ * Created by Kevin Grier
+ */
 
 @Entity
 @Table(name = "client")
@@ -24,20 +30,33 @@ public class Client {
     @Column(name = "last_name")
     private String lastName;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name= "address_id", nullable = false)
+    @Valid
     @OneToOne(cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Valid
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "pool_id")
+    private Pool pool;
+
     @NotNull
-    @Size(min=10, max=10, message = "10 digits only")
+    @Size(min=10, max=10, message = "Must be 10 digits only")
     private String phone;
 
-    public Client(String firstName, String lastName, String phone) {
+    @NotNull
+    @Email(message = "Please enter a valid email")
+    private String email;
+
+    @ManyToOne
+    private User user;
+
+    public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.phone = phone;
     }
 
@@ -61,7 +80,15 @@ public class Client {
 
     public void setPhone(String phone) { this.phone = phone; }
 
-    //public Pool getPool() { return pool; }
+    public String getEmail() { return email; }
 
-    //public void setPool(Pool pool) { this.pool = pool; }
+    public void setEmail(String email) { this.email = email; }
+
+    public Pool getPool() { return pool; }
+
+    public void setPool(Pool pool) { this.pool = pool; }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }

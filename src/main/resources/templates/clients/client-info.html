@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="bg-pool">
+
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <div class="container">
+
+        <div class="container">
+            <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
+        </div>
+
+        <br/>
+        <div class="col">
+            <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
+            <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Pool Information</a>
+            <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Dosage Information</a>
+        </div>
+        <br/>
+
+        <div class="container" style="max-width:80%;" th:object="${client}">
+
+            <div class="form-group round">
+            <div class="row">
+                <h2 style="font-weight:bold;" th:text="${client.firstName + ' ' + client.lastName}"></h2>
+            </div>
+
+            <br/>
+
+            <div class="row">
+
+                <div class="col" th:object="${address}">
+                    <h3>Address</h3> <br/>
+                    <a th:text="${address.street}"></a> <br/>
+                    <a th:text="${address.city + ', ' + address.state.name + ' ' + address.zipCode}"></a>
+                </div>
+
+                <div class="col">
+                    <h3>Email</h3> <br/>
+                    <a th:text="${client.email}"></a>
+                </div>
+
+                <div class="col">
+                    <h3>Phone</h3> <br/>
+                    <a th:text="${client.phone}"></a>
+                </div>
+
+            </div>
+
+            <br/>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

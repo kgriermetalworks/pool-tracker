@@ -2,39 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container">
+<body class="bg-pool">
 
 
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="container">
-    <h1 class="display-4 text-center" th:text="${title}">Default Title</h1>
+<div>
+    <h1 class="display-4 text-center" id="title" th:text="${title}">Default Title</h1>
 </div>
+
+<br/>
+    <div class="round">
+<div>
+    <h2 th:text="${user + ' Client List'}"></h2>
+</div>
+
+<br/>
 
 <p th:unless="${clients} and ${clients.size()}">You have no clients.</p>
 
-<!--<ul class="list-group list-group-flush" th:each="client : ${clients}">
 
-    <li class="list-group-item" th:text="${client.firstName + ', ' + client.lastName}"></li>
-
-</ul>-->
-
-<div>
-    <table class="table table-striped">
+    <table class="table">
         <tbody>
         <tr th:each="client : ${clients}">
-            <td th:text="${client.firstName + ', ' + client.lastName}"></td>
+            <td class="h2" th:text="${client.firstName + ' ' + client.lastName}"></td>
 
             <td>
-                <a href="/clients/personal-info" class="btn btn-outline-secondary" role="button" aria-pressed="true">Personal Information</a>
+                <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-outline-dark" style="border-radius: 3px;" role="button" aria-pressed="true">Personal Information</a>
             </td>
 
             <td>
-                <a href="/clients/pool" class="btn btn-outline-secondary" role="button" aria-pressed="true">Pool Information</a>
+                <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Pool Information</a>
             </td>
 
             <td>
-                <a href="/clients/dosage" class="btn btn-outline-secondary" role="button" aria-pressed="true">Dosage Information</a>
+                <a th:href="@{'/clients/dosage-view/' + ${client.id}}" class="btn btn-outline-dark" role="button" aria-pressed="true">Dosage Information</a>
             </td>
         </tr>
         </tbody>
@@ -42,8 +45,16 @@
 </div>
 
 <br />
-<div>
-    <a href="/clients/add" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Add Client</a>
+
+    <div class="row" style="max-width:350px;">
+        <div class="col">
+            <a href="/clients/add" class="btn btn-dark active" role="button" aria-pressed="true"><i class="fas fa-user-plus"></i> Add Client</a>
+        </div>
+
+        <div class="col" th:if="${clients} and ${clients.size()}">
+            <a href="/clients/remove" class="btn btn-dark active" role="button" aria-pressed="true"><i class="fas fa-trash-alt"></i> Remove Client</a>
+        </div>
+    </div>
 </div>
 
 </body>
