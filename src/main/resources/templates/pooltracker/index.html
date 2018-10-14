@@ -2,41 +2,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container">
+<body class="bg-pool">
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class="jumbotron jumbotron-fluid jumbotron-bg">
+<div class="jumbotron jumbotron-fluid jumbotron-bg" style="border-bottom-style: solid;">
     <div class="container">
         <h1 class="display-4 text-center" id="pool-title" th:text="${title}">Default Title</h1>
     </div>
 </div>
 
-<div class="container marketing">
-    <div class="row">
-        <div class="col-lg-4 text-center">
+<br/>
+
+<div class="container">
+    <div class="card-deck center">
+        <div class="card text-center round">
             <i class="fas fa-users fa-10x"></i>
+            <div class="card-body">
             <h2>Clients</h2>
             <p>Manage your clients. Add, edit, or remove. Organize your client list.</p>
             <p>
                 <a class="btn btn-dark" href="/clients">Dive In</a>
             </p>
+            </div>
         </div>
-        <div class="col-lg-4 text-center">
+
+        <div class="card text-center round">
+            <i class="far fa-calendar-alt fa-10x"></i>
+            <div class="card-body">
+            <h2>Appointments</h2>
+            <p>Manage your schedule. Create appointments, view details, and mark as completed.</p>
+            <p>
+                <a class="btn btn-dark" href="/Appointments">Dive In</a>
+            </p>
+            </div>
+        </div>
+
+        <!-- ###Future feature ###
+        <div class="card text-center round">
             <i class="fas fa-map-marked-alt fa-10x"></i>
+             <div class="card-body">
             <h2>Map</h2>
             <p>View your client footprint. Know where to focus and where to grow.</p>
             <p>
                 <a class="btn btn-dark" href="#">Dive In</a>
             </p>
+            </div>
         </div>
-        <div class="col-lg-4 text-center">
+        -->
+
+        <div class="card text-center round">
             <i class="fas fa-flask fa-10x"></i>
+            <div class="card-body">
             <h2>Dosage</h2>
             <p>Dosage calculator. Know how much to add when adjustments are needed.</p>
             <p>
                 <a class="btn btn-dark" href="/pooltracker/dosage-calculator">Dive In</a>
             </p>
+            </div>
         </div>
     </div>
 </div>

@@ -100,7 +100,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(Model model, HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -110,6 +110,8 @@ public class UserController {
             }
 
         }
+
+        model.addAttribute("title", "Welcome to PoolTracker");
         return "pooltracker/index";
     }
 

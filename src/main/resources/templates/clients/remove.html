@@ -2,39 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container">
+<body class="bg-pool">
 
-<nav th:replace="fragments :: navigation"></nav>
+    <nav th:replace="fragments :: navigation"></nav>
 
-<div class="container">
-    <h1 class="display-4" th:text="${title}">Default Title</h1>
-</div>
+     <div class="container">
 
-<br/>
-
-<div class="form-group">
-    <form method="post">
-
-       <div th:each="client : ${clients}" class="checkbox checkbox-lg h3">
-            <input type="checkbox" name="clientIds" th:value="${client.id}" th:id="${client.id}"/>
-            <label th:for="${client.id}" th:text="${client.firstName + ', ' + client.lastName}"></label>
-            <hr/>
-       </div>
-
-        <div class="row" style="max-width:300px;">
-
-            <div class="col">
-                <input type="submit" class="btn btn-secondary active" value="Remove Client" />
-            </div>
-
-            <div class="col">
-                <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
-            </div>
-
+        <div class="container">
+            <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
         </div>
-    </form>
 
-</div>
+        <br/>
+
+         <div>
+             <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Cancel</a>
+         </div>
+
+        <br/>
+
+             <div class="form-group round">
+                <form method="post">
+
+                   <div th:each="client : ${clients}" class="checkbox checkbox-lg h3">
+                        <input type="checkbox" name="clientIds" th:value="${client.id}" th:id="${client.id}"/>
+                        <label th:for="${client.id}" th:text="${client.firstName + ', ' + client.lastName}"></label>
+                        <hr/>
+                   </div>
+
+                <div class="row" style="max-width:300px;">
+
+                    <div class="col">
+                        <input type="submit" class="btn btn-dark active" value="Remove" />
+                    </div>
+                </div>
+
+            </form>
+
+     </div>
+     </div>
 
 
 </body>

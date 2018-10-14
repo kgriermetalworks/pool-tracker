@@ -1,4 +1,4 @@
-body.container {
+body.bg-pool {
     background-image: url("/images/pool-water.jpg");
     background-size: cover;
 
@@ -15,9 +15,13 @@ div.jumbotron-bg {
 }
 
 #pool-title {
-    color: #ffbf00;"
+    color: #ff9500;"
     font-size: large;
     font-weight: bold;
+    margin: 0 0 50px;
+    line-height: .74;
+    font-size: 75px;
+    text-transform: uppercase;
 
 }
 
@@ -27,6 +31,15 @@ div.jumbotron-bg {
 
 div.wht {
     background-color: white;
+    width: 100%;
+}
+
+div.round {
+    border-radius: 8px;
+    background: white;
+    padding: 30px;
+    border: solid;
+
 }
 
 error {

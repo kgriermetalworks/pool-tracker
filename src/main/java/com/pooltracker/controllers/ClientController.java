@@ -107,7 +107,7 @@ public class ClientController {
         }
         User user = userDao.findByEmail(email).get(0);
 
-        model.addAttribute("clients", clientDao.findAll());
+        model.addAttribute("clients", user.getClients());
         model.addAttribute("title", "Remove Client");
         return "clients/remove";
     }

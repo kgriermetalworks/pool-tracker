@@ -2,140 +2,144 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container" id="general">
+<body class="bg-pool">
 
-<nav th:replace="fragments :: navigation"></nav>
+    <nav th:replace="fragments :: navigation"></nav>
 
-<div class="container">
-    <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
-</div>
+    <div class="container">
 
-<br/>
-    <div class="col" th:unless="${clients}" th:object="${client}">
-        <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
-        <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Client Information</a>
-        <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Pool Information</a>
-    </div>
-<br/>
-
-
-<div class="container" style="max-width:80%;">
-<div class="form-group">
-    <div class="row">
-        <h2 style="font-weight:bold;" th:text="${client.firstName + ' ' + client.lastName}"></h2>
-    </div>
-
-    <br/>
-
-    <div class="container" th:object="${dosage}">
-        <div class="row">
-            <h3 class="ml-5" style="font-weight:bold;" th:text="${dosage.gallons} + ' Gallons'"></h3>
+        <div class="container">
+            <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
         </div>
-        <table class="table table-bordered table-sm">
-            <thead class="thead-dark">
-            <tr class="display-6">
-                <th>What Needs To Change<br/>Chemical Used</th>
-                <th colspan="2">Desired Amount of Change<br/>Amount of Chemical Needed</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="table-secondary">
-                <td>Free Available Chlorine</td>
-                <td>1 ppm</td>
-                <td>5 ppm</td>
-            </tr>
-            <tr>
-                <td>Liquid Chlorine (Sodium Hypochlorite)</td>
-                <td th:text="${dosage.sodHypo} + ' fl oz.'"></td>
-                <td th:with="result=${dosage.sodHypo * 5}" th:text="${result} + ' fl oz.'"></td>
-            </tr>
-            <tr>
-                <td>Pulsar (Calcium Hypochlorite 67%)</td>
-                <td th:text="${dosage.calHypo} + ' oz.'"></td>
-                <td th:with="result=${dosage.calHypo * 5}" th:text="${result} + ' oz.'"></td>
-            </tr>
-            <tr>
-                <td>Chlorine Tabs (TriChlor)</td>
-                <td th:text="${dosage.trichlor} + ' oz.'"></td>
-                <td th:with="result=${dosage.trichlor * 5}" th:text="${result} + ' oz.'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Increase pH</td>
-                <td>7.2 > 7.4</td>
-                <td>6.6 > 7.4</td>
-            </tr>
-            <tr>
-                <td>Soda Ash</td>
-                <td th:text="${dosage.sodaAsh} + ' oz.'"></td>
-                <td th:with="result=${(dosage.gallons * 12)/16}" th:text="${result} + ' lbs'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Decrease pH</td>
-                <td>7.8 > 7.6</td>
-                <td>8.0 > 7.6</td>
-            </tr>
-            <tr>
-                <td>Muratic Acid</td>
-                <td th:text="${dosage.muriaticAcid} + ' fl oz.'"></td>
-                <td th:with="result=${(dosage.gallons * 16)}" th:text="${result} + ' fl oz.'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Increase Total Alkalinity</td>
-                <td>10 ppm</td>
-                <td>50 ppm</td>
-            </tr>
-            <tr>
-                <td>Sodium Bicarbonate (Baking Soda)</td>
-                <td th:text="${dosage.sodBicarb} + ' lbs'"></td>
-                <td th:with="result=${dosage.sodBicarb * 5}" th:text="${result} + ' lbs'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Decrease Total Alkalinity</td>
-                <td>10 ppm</td>
-                <td>50 ppm</td>
-            </tr>
-            <tr>
-                <td>Sodium Bisulfate (Dry Acid)</td>
-                <td th:text="${dosage.sodBisulf} + ' lbs'"></td>
-                <td th:with="result=${dosage.sodBisulf * 5}" th:text="${result} + ' lbs'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Increase Calcium Hardness</td>
-                <td>10 ppm</td>
-                <td>50 ppm</td>
-            </tr>
-            <tr>
-                <td>Calcium Chloride (77%)</td>
-                <td th:text="${dosage.calChlor} + ' lbs'"></td>
-                <td th:with="result=${dosage.calChlor * 5}" th:text="${result} + ' lbs'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Increase Stabilizer</td>
-                <td>10 ppm</td>
-                <td>30 ppm</td>
-            </tr>
-            <tr>
-                <td>Cyanuric Acid</td>
-                <td th:text="${dosage.cyaAcid} + ' oz.'"></td>
-                <td th:with="result=${dosage.cyaAcid * 3}" th:text="${result} + ' lbs'"></td>
-            </tr>
-            <tr class="table-secondary">
-                <td>Neutralize Chlorine</td>
-                <td>1 ppm</td>
-                <td>5 ppm</td>
-            </tr>
-            <tr>
-                <td>Sodium Thiosulfate</td>
-                <td th:text="${dosage.sodThio} + ' oz.'"></td>
-                <td th:with="result=${(dosage.sodThio) * 5}" th:text="${result} + ' oz.'"></td>
-            </tr>
-            </tbody>
-        </table>
+
+        <br/>
+            <div class="col" th:unless="${clients}" th:object="${client}">
+                <a href="/clients" class="btn btn-secondary active" role="button" aria-pressed="true">Client List</a>
+                <a th:href="@{'/clients/client-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Client Information</a>
+                <a th:href="@{'/clients/pool-info/' + ${client.id}}" class="btn btn-secondary active" role="button" aria-pressed="true">Pool Information</a>
+            </div>
+        <br/>
+
+
+        <div class="container" style="max-width:80%;">
+        <div class="form-group round">
+            <div class=" form-group row">
+                <h2 style="font-weight:bold;" th:text="${client.firstName + ' ' + client.lastName}"></h2>
+            </div>
+
+            <br/>
+
+            <div th:object="${dosage}">
+                <div class="row">
+                    <h3 class="ml-5" style="font-weight:bold;" th:text="${dosage.gallons} + ' Gallons'"></h3>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-dark">
+                    <tr class="display-6">
+                        <th>What Needs To Change<br/>Chemical Used</th>
+                        <th colspan="2">Desired Amount of Change<br/>Amount of Chemical Needed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-secondary">
+                        <td>Free Available Chlorine</td>
+                        <td>1 ppm</td>
+                        <td>5 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Liquid Chlorine (Sodium Hypochlorite)</td>
+                        <td th:text="${dosage.sodHypo} + ' fl oz.'"></td>
+                        <td th:with="result=${dosage.sodHypo * 5}" th:text="${result} + ' fl oz.'"></td>
+                    </tr>
+                    <tr>
+                        <td>Pulsar (Calcium Hypochlorite 67%)</td>
+                        <td th:text="${dosage.calHypo} + ' oz.'"></td>
+                        <td th:with="result=${dosage.calHypo * 5}" th:text="${result} + ' oz.'"></td>
+                    </tr>
+                    <tr>
+                        <td>Chlorine Tabs (TriChlor)</td>
+                        <td th:text="${dosage.trichlor} + ' oz.'"></td>
+                        <td th:with="result=${dosage.trichlor * 5}" th:text="${result} + ' oz.'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Increase pH</td>
+                        <td>7.2 > 7.4</td>
+                        <td>6.6 > 7.4</td>
+                    </tr>
+                    <tr>
+                        <td>Soda Ash</td>
+                        <td th:text="${dosage.sodaAsh} + ' oz.'"></td>
+                        <td th:with="result=${((dosage.gallons / 10000) * 12)/16}" th:text="${result} + ' lbs'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Decrease pH</td>
+                        <td>7.8 > 7.6</td>
+                        <td>8.0 > 7.6</td>
+                    </tr>
+                    <tr>
+                        <td>Muratic Acid</td>
+                        <td th:text="${dosage.muriaticAcid} + ' fl oz.'"></td>
+                        <td th:with="result=${((dosage.gallons / 10000) * 16)}" th:text="${result} + ' fl oz.'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Increase Total Alkalinity</td>
+                        <td>10 ppm</td>
+                        <td>50 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Sodium Bicarbonate (Baking Soda)</td>
+                        <td th:text="${dosage.sodBicarb} + ' lbs'"></td>
+                        <td th:with="result=${dosage.sodBicarb * 5}" th:text="${result} + ' lbs'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Decrease Total Alkalinity</td>
+                        <td>10 ppm</td>
+                        <td>50 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Sodium Bisulfate (Dry Acid)</td>
+                        <td th:text="${dosage.sodBisulf} + ' lbs'"></td>
+                        <td th:with="result=${dosage.sodBisulf * 5}" th:text="${result} + ' lbs'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Increase Calcium Hardness</td>
+                        <td>10 ppm</td>
+                        <td>50 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Calcium Chloride (77%)</td>
+                        <td th:text="${dosage.calChlor} + ' lbs'"></td>
+                        <td th:with="result=${dosage.calChlor * 5}" th:text="${result} + ' lbs'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Increase Stabilizer</td>
+                        <td>10 ppm</td>
+                        <td>30 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Cyanuric Acid</td>
+                        <td th:text="${dosage.cyaAcid} + ' oz.'"></td>
+                        <td th:with="result=${dosage.cyaAcid * 3}" th:text="${result} + ' lbs'"></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Neutralize Chlorine</td>
+                        <td>1 ppm</td>
+                        <td>5 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Sodium Thiosulfate</td>
+                        <td th:text="${dosage.sodThio} + ' oz.'"></td>
+                        <td th:with="result=${(dosage.sodThio) * 5}" th:text="${result} + ' oz.'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            </div>
+
+        </div>
 
     </div>
-    </div>
-</div>
-
 
 </body>
 </html>

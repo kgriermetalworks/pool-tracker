@@ -2,161 +2,164 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container">
+<body class="bg-pool">
 
 
-<nav th:replace="fragments :: navigation"></nav>
+    <nav th:replace="fragments :: navigation"></nav>
 
-<div class="container">
-    <h1 class="display-4" th:text="'Edit Client: ' + ${client.firstName + ' ' + client.lastName}">Default Title</h1>
-</div>
+    <div class="container">
 
-<form method="post" style="max-width:600px;" th:object="${client}">
-    <div class="row">
-        <div class="col">
-            <label th:for="firstName">First Name</label>
-            <input type="text" class="form-control" th:field="*{firstName}" />
-            <span th:errors="*{firstName}" class="error"></span>
-        </div>
-        <div class="form-row">
-            <label th:for="lastName">Last Name</label>
-            <input type="text" class="form-control" th:field="*{lastName}" />
-            <span th:errors="*{lastName}" class="error"></span>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col">
-            <label th:for="email">Email</label>
-            <input type="text" class="form-control" th:field="*{email}" placeholder="example@sample.com" />
-            <span th:errors="*{email}" class="error"></span>
-        </div>
-        <div class="form-row">
-            <label th:for="phone">Phone</label>
-            <input type="text" class="form-control" th:field="*{phone}" placeholder="0123456789" />
-            <span th:errors="*{phone}" class="error"></span>
-        </div>
-    </div>
-    <br />
-
-    <div>
-    <div class="form-group">
-        <label th:for="street">Address</label>
-        <input type="text" class="form-control" th:field="*{address.street}" id="inputAddress" placeholder="1234 Main St" />
-        <span th:errors="*{address.street}" class="error"></span>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label th:for="city">City</label>
-            <input type="text" class="form-control" th:field="*{address.city}" id="inputCity" />
-            <span th:errors="*{address.city}" class="error"></span>
-        </div>
-        <div class="form-group col-md-4">
-            <label th:for="state">State</label>
-            <select th:field="*{address.state}" id="inputState" class="form-control">
-                <option value=""></option>
-                <option th:each="state : ${states}"
-                        th:text="${state.name}"
-                        th:value="${state}"></option>
-            </select>
-            <span th:errors="*{address.state}" class="error"></span>
-        </div>
-        <div class="form-group col-md-2">
-            <label th:for="zipCode">Zip Code</label>
-            <input type="text" class="form-control" th:field="*{address.zipCode}" id="inputZip" />
-            <span th:errors="*{address.zipCode}" class="error"></span>
+        <div class="container">
+            <h1 class="display-4" th:text="'Edit Client: ' + ${client.firstName + ' ' + client.lastName}">Default Title</h1>
         </div>
 
-        <br/>
-
-        <div class="form-group">
-            <div class="display-2">
-                <h2>Pool Information</h2>
-            </div>
-            <hr/>
+        <form method="post" style="max-width:600px;" th:object="${client}">
             <div class="row">
+                <div class="col">
+                    <label th:for="firstName">First Name</label>
+                    <input type="text" class="form-control" th:field="*{firstName}" />
+                    <span th:errors="*{firstName}" class="error"></span>
+                </div>
+                <div class="form-row">
+                    <label th:for="lastName">Last Name</label>
+                    <input type="text" class="form-control" th:field="*{lastName}" />
+                    <span th:errors="*{lastName}" class="error"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <label th:for="email">Email</label>
+                    <input type="text" class="form-control" th:field="*{email}" placeholder="example@sample.com" />
+                    <span th:errors="*{email}" class="error"></span>
+                </div>
+                <div class="form-row">
+                    <label th:for="phone">Phone</label>
+                    <input type="text" class="form-control" th:field="*{phone}" placeholder="0123456789" />
+                    <span th:errors="*{phone}" class="error"></span>
+                </div>
+            </div>
+            <br />
+
+            <div>
+            <div class="form-group">
+                <label th:for="street">Address</label>
+                <input type="text" class="form-control" th:field="*{address.street}" id="inputAddress" placeholder="1234 Main St" />
+                <span th:errors="*{address.street}" class="error"></span>
+            </div>
+            <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label th:for="pool.gallons">Gallons</label>
-                    <input type="text" class="form-control" th:field="*{pool.gallons}" id="inputGallons" />
-                    <span th:errors="*{pool.gallons}" class="error"></span>
+                    <label th:for="city">City</label>
+                    <input type="text" class="form-control" th:field="*{address.city}" id="inputCity" />
+                    <span th:errors="*{address.city}" class="error"></span>
                 </div>
-            </div>
-
-            <div class="display-2">
-                <h4>Filter</h4>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-8">
-                    <label th:for="pool.filterMfr">Filter Manufacturer</label>
-                    <input type="text" class="form-control" th:field="*{pool.filterMfr}" />
-                    <span th:errors="*{pool.filterMfr}" class="error"></span>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="form-group col-md-4">
-                    <label th:for="filterType">Type</label>
-                    <select th:field="*{pool.filterType}" id="inputFilterType" class="form-control">
+                    <label th:for="state">State</label>
+                    <select th:field="*{address.state}" id="inputState" class="form-control">
                         <option value=""></option>
-                        <option th:each="filterType : ${filterTypes}"
-                                th:text="${filterType.name}"
-                                th:value="${filterType}"></option>
+                        <option th:each="state : ${states}"
+                                th:text="${state.name}"
+                                th:value="${state}"></option>
                     </select>
-                    <span th:errors="*{pool.filterType}" class="error"></span>
+                    <span th:errors="*{address.state}" class="error"></span>
                 </div>
-                <div class="form-group col-md-7">
-                    <label th:for="filterModel">Filter Model</label>
-                    <input type="text" class="form-control" th:field="*{pool.filterModel}" />
-                    <span th:errors="*{pool.filterModel}" class="error"></span>
-                </div>
-            </div>
-            <div class="display-2">
-                <h4>Pump</h4>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-8">
-                    <label th:for="pumpMfr">Pump Manufacturer</label>
-                    <input type="text" class="form-control" th:field="*{pool.pumpMfr}" />
-                    <span th:errors="*{pool.pumpMfr}" class="error"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label th:for="pumpHp">Horsepower</label>
-                    <select th:field="*{pool.pumpHp}" id="inputPumpHp" class="form-control">
-                        <option value=""></option>
-                        <option th:each="pumpHp : ${pumpHps}"
-                                th:text="${pumpHp.name}"
-                                th:value="${pumpHp}"></option>
-                    </select>
-                    <span th:errors="*{pool.pumpHp}" class="error"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label th:for="pumpPh">Phase</label>
-                    <select th:field="*{pool.pumpPh}" id="inputPumpPh" class="form-control">
-                        <option value=""></option>
-                        <option th:each="pumpPh : ${pumpPhs}"
-                                th:text="${pumpPh.name}"
-                                th:value="${pumpPh}"></option>
-                    </select>
-                    <span th:errors="*{pool.pumpPh}" class="error"></span>
-                </div>
-                <div class="form-group col-md">
-                    <label th:for="pumpModel">Pump Model</label>
-                    <input type="text" class="form-control" th:field="*{pool.pumpModel}" />
-                    <span th:errors="*{pool.pumpModel}" class="error"></span>
+                <div class="form-group col-md-2">
+                    <label th:for="zipCode">Zip Code</label>
+                    <input type="text" class="form-control" th:field="*{address.zipCode}" id="inputZip" />
+                    <span th:errors="*{address.zipCode}" class="error"></span>
                 </div>
 
-            </div>
+                <br/>
 
-        </div>
-        </div>
-        <input type="hidden" th:value="${client.id}" name="clientId" />
-        <input type="submit" class="btn btn-secondary active" value="Edit Client" />
+                <div class="form-group">
+                    <div class="display-2">
+                        <h2>Pool Information</h2>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label th:for="pool.gallons">Gallons</label>
+                            <input type="text" class="form-control" th:field="*{pool.gallons}" id="inputGallons" />
+                            <span th:errors="*{pool.gallons}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="display-2">
+                        <h4>Filter</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label th:for="pool.filterMfr">Filter Manufacturer</label>
+                            <input type="text" class="form-control" th:field="*{pool.filterMfr}" />
+                            <span th:errors="*{pool.filterMfr}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label th:for="filterType">Type</label>
+                            <select th:field="*{pool.filterType}" id="inputFilterType" class="form-control">
+                                <option value=""></option>
+                                <option th:each="filterType : ${filterTypes}"
+                                        th:text="${filterType.name}"
+                                        th:value="${filterType}"></option>
+                            </select>
+                            <span th:errors="*{pool.filterType}" class="error"></span>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label th:for="filterModel">Filter Model</label>
+                            <input type="text" class="form-control" th:field="*{pool.filterModel}" />
+                            <span th:errors="*{pool.filterModel}" class="error"></span>
+                        </div>
+                    </div>
+                    <div class="display-2">
+                        <h4>Pump</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label th:for="pumpMfr">Pump Manufacturer</label>
+                            <input type="text" class="form-control" th:field="*{pool.pumpMfr}" />
+                            <span th:errors="*{pool.pumpMfr}" class="error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label th:for="pumpHp">Horsepower</label>
+                            <select th:field="*{pool.pumpHp}" id="inputPumpHp" class="form-control">
+                                <option value=""></option>
+                                <option th:each="pumpHp : ${pumpHps}"
+                                        th:text="${pumpHp.name}"
+                                        th:value="${pumpHp}"></option>
+                            </select>
+                            <span th:errors="*{pool.pumpHp}" class="error"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label th:for="pumpPh">Phase</label>
+                            <select th:field="*{pool.pumpPh}" id="inputPumpPh" class="form-control">
+                                <option value=""></option>
+                                <option th:each="pumpPh : ${pumpPhs}"
+                                        th:text="${pumpPh.name}"
+                                        th:value="${pumpPh}"></option>
+                            </select>
+                            <span th:errors="*{pool.pumpPh}" class="error"></span>
+                        </div>
+                        <div class="form-group col-md">
+                            <label th:for="pumpModel">Pump Model</label>
+                            <input type="text" class="form-control" th:field="*{pool.pumpModel}" />
+                            <span th:errors="*{pool.pumpModel}" class="error"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+                </div>
+                <input type="hidden" th:value="${client.id}" name="clientId" />
+                <input type="submit" class="btn btn-secondary active" value="Edit Client" />
+            </div>
+        </form>
     </div>
-</form>
 
 
 </body>
