@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="bg-pool">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+    <div class="container">
+        <div>
+            <h1 class="display-4 text-center" id="title" th:text="${title}">Default Title</h1>
+        </div>
+
+        <br/>
+        <div class="round">
+            <div>
+                <h2 th:text="${user + ' Appointments'}"></h2>
+            </div>
+
+            <br/>
+
+            <p th:unless="${appointments} and ${appointments.size()}">You have no appointments.</p>
+
+            <table class="table">
+                <tbody>
+                <tr th:each="appointment : ${appointments}">
+
+                    <td class=" col-4 h2 border-right" th:text="${#dates.dayOfWeekName(appointment.date) + ', ' + #dates.monthNameShort(appointment.date) + '. ' + #dates.day(appointment.date)}"></td>
+
+                    <td th:text="${appointment.title}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br />
+
+        <div class="row" style="max-width:350px;">
+
+            <div class="col">
+                <a href="/appointments/add" class="btn btn-dark active" role="button" aria-pressed="true"><i class="far fa-calendar-plus"></i> Schedule Appointment</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

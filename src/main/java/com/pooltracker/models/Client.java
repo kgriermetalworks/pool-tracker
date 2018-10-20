@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin Grier
@@ -52,6 +54,7 @@ public class Client {
 
     @ManyToOne
     private User user;
+
 
     public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;

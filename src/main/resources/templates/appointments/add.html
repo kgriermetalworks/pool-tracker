@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="bg-pool">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+    <div class="container">
+        <div>
+            <h1 class="display-4" id="title" th:text="${title}">Default Title</h1>
+        </div>
+
+        <br/>
+
+        <div>
+            <a href="/appointments" class="btn btn-sm btn-secondary active" role="button" aria-pressed="true">Cancel</a>
+        </div>
+
+        <br/>
+
+        <form method="post" style="max-width:600px;" th:object="${appointment}">
+
+            <div class="form-group round">
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label th:for="date">Date</label>
+                        <input type="text" th:field="*{date}" data-provide="datepicker" class="form-control"/>
+                        <span th:errors="*{date}" class="error"></span>
+                    </div>
+
+                    <div class='form-group col-md-3'>
+                        <label th:for="appTime">Time</label>
+                        <input type='text' th:field="*{appTime}" class="form-control" placeholder="hh:mm" />
+                        <span th:errors="*{appTime}" class="error"></span>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="form-group col-md">
+                        <label th:for="title">Title</label>
+                        <input type="text" class="form-control" th:field="*{title}" />
+                        <span th:errors="*{title}" class="error"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md">
+                        <label th:for="description">Description</label>
+                        <textarea th:field="*{description}" class="form-control" rows="5"></textarea>
+                        <span th:errors="*{description}" class="error"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-dark active" value="Schedule" />
+            </div>
+
+        </form>
+
+    </div>
+</body>
+</html>

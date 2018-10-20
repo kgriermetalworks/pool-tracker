@@ -34,6 +34,10 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Client> clients = new ArrayList<>();
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Appointment> appointments = new ArrayList<>();
+
     public User(){ }
 
     public String getBusiness() { return business; }
@@ -51,4 +55,6 @@ public class User {
     public void setPassword(String password) { this.password = password; }
 
     public List<Client> getClients() { return clients; }
+
+    public List<Appointment> getAppointments() { return appointments; }
 }
