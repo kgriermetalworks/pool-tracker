@@ -12,7 +12,7 @@ Features:
 ● Add/remove client Information
 ● Add/remove pool specifications
 ● Create dosage sheet
-● View client footprint via google maps
+● Create appontments
 
 Technologies:
 ● Java
@@ -23,8 +23,4 @@ Technologies:
 ● CRUD
 ● bootstrap
 ● Google maps api
-
-What I'll have to learn:
-● Google maps api
-● Expand on relationship mapping
 
