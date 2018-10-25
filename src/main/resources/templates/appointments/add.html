@@ -20,12 +20,12 @@
 
         <br/>
 
-        <form method="post" style="max-width:600px;" th:object="${appointment}">
+        <form method="post" style="max-width: auto;" th:object="${appointment}">
 
             <div class="form-group round">
 
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label th:for="date">Date</label>
                         <input type="text" th:field="*{date}" data-provide="datepicker" class="form-control"/>
                         <span th:errors="*{date}" class="error"></span>
@@ -33,13 +33,25 @@
 
                     <div class='form-group col-md-3'>
                         <label th:for="appTime">Time</label>
-                        <input type='text' th:field="*{appTime}" class="form-control" placeholder="hh:mm" />
+                        <input type='text' th:field="*{appTime}" class="form-control" placeholder="hh:mm AM/PM" />
                         <span th:errors="*{appTime}" class="error"></span>
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label th:for="client_id">Client</label>
+                        <select th:field="*{client}" class="form-control">
+                            <option value=""></option>
+                            <option th:each="client : ${clients}"
+                                    th:text="${client.firstName + ' ' + client.lastName}"
+                                    th:value="${client.id}"></option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="row" >
-                    <div class="form-group col-md">
+                    <div class="form-group col-md-6">
                         <label th:for="title">Title</label>
                         <input type="text" class="form-control" th:field="*{title}" />
                         <span th:errors="*{title}" class="error"></span>

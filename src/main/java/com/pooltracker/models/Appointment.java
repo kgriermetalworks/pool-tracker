@@ -25,7 +25,7 @@ public class Appointment {
 
     @NotNull
     @Size(min=1, message = "Appointment must have a description")
-    @Column(name = "description")
+    @Column(name = "description", length = 500)
     private String description;
 
     @NotNull
@@ -42,8 +42,12 @@ public class Appointment {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    public Appointment() { };
+
+    public Appointment() { }
 
     public int getId() { return id; }
 
@@ -71,4 +75,7 @@ public class Appointment {
 
     public void setUser(User user) { this.user = user; }
 
+    public Client getClient() { return client; }
+
+    public void setClient(Client client) { this.client = client; }
 }

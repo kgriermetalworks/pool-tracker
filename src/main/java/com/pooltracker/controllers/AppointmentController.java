@@ -48,6 +48,7 @@ public class AppointmentController {
 
         User user = userDao.findByEmail(email).get(0);
 
+
         model.addAttribute("user", user.getBusiness());
         model.addAttribute("appointments", user.getAppointments());
         model.addAttribute("title", "My Appointments");
@@ -68,6 +69,7 @@ public class AppointmentController {
         model.addAttribute("user", user.getBusiness());
         model.addAttribute(new Appointment());
         model.addAttribute("title", "Schedule Appointment");
+        model.addAttribute("clients", user.getClients());
 
         return "appointments/add";
     }
@@ -88,10 +90,12 @@ public class AppointmentController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Schedule Appointment");
             model.addAttribute("appointment", newAppointment);
+            model.addAttribute("clients", clientDao.findByUser(user));
 
             return "appointments/add";
         }
 
+        //newAppointment.setClient(); //sets the client identified with the appointment
         newAppointment.setUser(user);  //adds user reference to appointment
 
         appointmentDao.save(newAppointment);

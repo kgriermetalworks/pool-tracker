@@ -55,6 +55,10 @@ public class Client {
     @ManyToOne
     private User user;
 
+    @OneToMany
+    @JoinColumn(name = "client_id")
+    private List<Appointment> appointments = new ArrayList<>();
+
 
     public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
@@ -94,4 +98,8 @@ public class Client {
     public User getUser() { return user; }
 
     public void setUser(User user) { this.user = user; }
+
+    public List<Appointment> getAppointments() { return appointments; }
+
+    public void setAppointments(List<Appointment> appointments) { this.appointments = appointments; }
 }

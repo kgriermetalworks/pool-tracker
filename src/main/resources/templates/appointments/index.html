@@ -22,13 +22,23 @@
 
             <p th:unless="${appointments} and ${appointments.size()}">You have no appointments.</p>
 
-            <table class="table">
+            <table class="table table-lg table-borderless">
                 <tbody>
-                <tr th:each="appointment : ${appointments}">
+                <tr th:each="appointment : ${appointments}" class="border border-dark">
 
-                    <td class=" col-4 h2 border-right" th:text="${#dates.dayOfWeekName(appointment.date) + ', ' + #dates.monthNameShort(appointment.date) + '. ' + #dates.day(appointment.date)}"></td>
+                    <tr class="row">
+                        <td class="col-md-4 h3" th:text="${#dates.dayOfWeekName(appointment.date) + ', ' + #dates.monthNameShort(appointment.date) + '. ' + #dates.day(appointment.date)}"></td>
 
-                    <td th:text="${appointment.title}"></td>
+                        <td class="col-md-auto h5" th:text="${'@ ' + appointment.appTime}"></td>
+
+                        <td class="col-md-auto h5" th:text="${'Client: ' + appointment.client.firstName + ' ' + appointment.client.lastName}"></td>
+
+                        <td class="col-md-auto h5" th:text="${'Objective: ' + appointment.title}"></td>
+                    </tr>
+
+                    <tr class="row">
+                        <td th:text="${appointment.description}" class="col font-size"></td>
+                    </tr>
 
                 </tr>
                 </tbody>
